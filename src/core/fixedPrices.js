@@ -1,0 +1,22 @@
+export const prices=[
+  {
+    _id:0,
+    name:"Any",
+    array:[]
+  },
+  {
+    _id:1,
+    name:"₹200-₹399",
+    array:[200,399]
+  },
+  {
+    _id:2,
+    name:"₹400-₹599",
+    array:[400,599]
+  },
+  {
+    _id:3,
+    name:"₹600+",
+    array:[600,999]
+  },
+]
