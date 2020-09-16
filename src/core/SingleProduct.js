@@ -10,28 +10,67 @@ import Typography from '@material-ui/core/Typography';
 import { API } from "../config";
 import {Link} from "react-router-dom";
 
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
+
 
 const useStyles = makeStyles((theme)=>({
   root: {
-    maxWidth: 345,
-    marginTop:10,
-    marginBottom:10,
+    width: 500,
+    margin:"50px auto 10px 100px",
     paddingBottom:15,
+    [theme.breakpoints.down('sm')]: {
+      width: "90%",
+      margin:"50px auto 10px auto",
+      paddingBottom:15,
+   }
+
 
 
   },
+  title:{
+fontSize:30,
+color:"#051c33"
+  },
+
   buttons:{
 
    textAlign:"center",
-
+marginLeft:20,
    "&:hover":{
      color:"#fff"
-   }
+   },
+
  },
+ description:{
+   marginTop:20,
+   marginLeft:5,
+   fontSize:18,
+ },
+ chip1:{
+   textAlign:"center",
+   width:200,
+   marginBottom:10,
+   fontSize:18,
+
+ },
+ chip2:{
+   textAlign:"center",
+   width:100,
+   marginBottom:10,
+   marginLeft:20,
+   fontSize:18,
+ },
+ add:{
+   marginTop:5
+ },
+
+
+
   video:{
     objectFit:"cover",
     [theme.breakpoints.down('sm')]: {
-  height:200
+  height:300
    }
   }
 }));
@@ -47,7 +86,7 @@ const ProductCard=({product})=>{
       <CardMedia
           component="video"
           alt="product media"
-          height="300"
+          height="400"
           image={`${API}/product/media/${product._id}`}
           title='video'
                     type='video/mp4'
@@ -55,19 +94,33 @@ const ProductCard=({product})=>{
                     className={classes.video}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
           {product.name}
           </Typography>
-          <Typography variant="h6" color="primary" component="p">
-        ₹{product.price}
+          <Chip
+       label={product.category&&product.category.name}
+      className={classes.chip1}
+       color="primary"
+     />
+
+     <Chip
+     avatar={<Avatar>₹</Avatar>}
+  label={product.price}
+  className={classes.chip2}
+
+  color="secondary"
+/>
+
+          <Typography variant="body1" component="p" className={classes.description}>
+        {product.description}
           </Typography>
+
+
+
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Button size="small" variant="contained" color="secondary"  component={Link} to={`/product/${product._id}`} className={classes.buttons}>
-      View Product
-      </Button>
-        <Button size="small" variant="contained" color="primary">
+        <Button size="small" variant="contained" color="secondary" component={Link} to="/cart" className={classes.buttons}>
           Add to Cart
         </Button>
       </CardActions>
