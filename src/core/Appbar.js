@@ -1,10 +1,13 @@
 import React,{Fragment} from "react";
 import {Link,withRouter, NavLink} from "react-router-dom";
 import {signout,isAuthenticated} from "../auth";
+import {itemTotal} from "./cartHelpers";
 
 import { makeStyles } from '@material-ui/core/styles';
 import {Navbar,Nav} from 'react-bootstrap';
 import logo from "../images/logo.png";
+import Badge from '@material-ui/core/Badge';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +39,9 @@ return (
   <Nav.Link as={NavLink} to='/shop' exact>Shop</Nav.Link>
         </Nav>
         <Nav>
+        <Nav.Link as={NavLink} to='/cart' exact> <Badge badgeContent={itemTotal()} color="primary">
+        <ShoppingCartIcon />
+      </Badge></Nav.Link>
         {!isAuthenticated()&&(
           <Fragment>
             <Nav.Link as={NavLink} to="/signin">Login</Nav.Link>

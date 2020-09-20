@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { API } from "../config";
 import {Link} from "react-router-dom";
+import {addItem} from "./cartHelpers";
 
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
@@ -75,9 +76,14 @@ marginLeft:20,
   }
 }));
 
-const ProductCard=({product})=>{
+const SingleProduct=({product})=>{
   const classes = useStyles();
-
+  const [redirect,setRedirect]=useState(false);
+  const addToCart=()=>{
+    addItem(product,()=>{
+      setRedirect(true);
+    })
+  }
 
 
   return (
@@ -120,11 +126,11 @@ const ProductCard=({product})=>{
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" variant="contained" color="secondary" component={Link} to="/cart" className={classes.buttons}>
+        <Button size="small" variant="contained" color="secondary" onClick={addToCart} component={Link} to="/cart" className={classes.buttons}>
           Add to Cart
         </Button>
       </CardActions>
     </Card>
   );
 }
-export default ProductCard;
+export default SingleProduct;
