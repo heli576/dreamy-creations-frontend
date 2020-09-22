@@ -9,7 +9,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { API } from "../config";
 import {Link,Redirect} from "react-router-dom";
-import {addItem} from "./cartHelpers";
+import {addItem,updateItem} from "./cartHelpers";
+import TextField from '@material-ui/core/TextField';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -32,6 +33,10 @@ const useStyles = makeStyles((theme)=>({
      color:"#fff"
    }
  },
+ textfield:{
+   width:60,
+   //height:20
+ },
   video:{
     objectFit:"cover",
     [theme.breakpoints.down('sm')]: {
@@ -40,13 +45,50 @@ const useStyles = makeStyles((theme)=>({
   }
 }));
 
-const ProductCard=({product})=>{
+const ProductCard=({product,showAddToCartButton=true,cartUpdate=false})=>{
   const classes = useStyles();
   const [redirect,setRedirect]=useState(false);
+  const [count,setCount]=useState(1);
   const addToCart=()=>{
     addItem(product,()=>{
       setRedirect(true);
     })
+  }
+
+  const handleChange = productId => event => {
+    setCount(event.target.value < 1 ? 1 : event.target.value);
+    if (event.target.value >= 1) {
+      updateItem(productId, event.target.value);
+    }
+  };
+
+  const showAddToCart=showAddToCartButton=>{
+    return(
+      showAddToCartButton&&(<Button size="small" variant="contained" color="primary"onClick={addToCart} component={Link} to="/cart" className={classes.buttons}>
+        Add to Cart
+      </Button>)
+
+    )
+  }
+
+
+  const showCartUpdateOptions=cartUpdate=>{
+    return cartUpdate&&(
+      <div>
+
+      <TextField
+type="number"
+label="Qty"
+
+             variant="outlined"
+             size="small"
+             className={classes.textfield}
+             value={count}
+             onChange={handleChange(product._id)}
+           />
+
+          </div>
+    )
   }
 
 
@@ -77,9 +119,8 @@ const ProductCard=({product})=>{
       <Button size="small" variant="contained" color="secondary"  component={Link} to={`/product/${product._id}`} className={classes.buttons}>
       View Product
       </Button>
-        <Button size="small" variant="contained" color="primary"onClick={addToCart} component={Link} to="/cart" className={classes.buttons}>
-          Add to Cart
-        </Button>
+      {showAddToCart(showAddToCartButton)}
+      {showCartUpdateOptions(cartUpdate)}
       </CardActions>
     </Card>
   );
