@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { API } from "../config";
 import {Link,Redirect} from "react-router-dom";
-import {addItem,updateItem} from "./cartHelpers";
+import {addItem,updateItem,removeItem} from "./cartHelpers";
 import TextField from '@material-ui/core/TextField';
 
 
@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme)=>({
   }
 }));
 
-const ProductCard=({product,showAddToCartButton=true,cartUpdate=false})=>{
+const ProductCard=({product,showAddToCartButton=true,cartUpdate=false,showRemoveProductButton=false, setRun = f => f,
+  run = undefined})=>{
   const classes = useStyles();
   const [redirect,setRedirect]=useState(false);
   const [count,setCount]=useState(1);
@@ -56,6 +57,7 @@ const ProductCard=({product,showAddToCartButton=true,cartUpdate=false})=>{
   }
 
   const handleChange = productId => event => {
+      setRun(!run);
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if (event.target.value >= 1) {
       updateItem(productId, event.target.value);
@@ -66,6 +68,14 @@ const ProductCard=({product,showAddToCartButton=true,cartUpdate=false})=>{
     return(
       showAddToCartButton&&(<Button size="small" variant="contained" color="primary"onClick={addToCart} component={Link} to="/cart" className={classes.buttons}>
         Add to Cart
+      </Button>)
+
+    )
+  }
+  const showRemoveButton=showRemoveProductButton=>{
+    return(
+      showRemoveProductButton&&(<Button size="small" variant="contained" color="primary"onClick={()=>{removeItem(product._id);setRun(!run);} }  className={classes.buttons}>
+        Remove item
       </Button>)
 
     )
@@ -120,6 +130,7 @@ label="Qty"
       View Product
       </Button>
       {showAddToCart(showAddToCartButton)}
+      {showRemoveButton(showRemoveProductButton)}
       {showCartUpdateOptions(cartUpdate)}
       </CardActions>
     </Card>

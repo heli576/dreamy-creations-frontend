@@ -40,14 +40,16 @@ fontFamily:"Playball",
 
 
 
+
 }));
 
 const Cart=()=>{
 const classes = useStyles();
 const [items,setItems]=useState([]);
+ const [run, setRun] = useState(false);
 useEffect(()=>{
   setItems(getCart())
-},[]);
+},[run]);
 
 const showItems=items=>{
   return(
@@ -62,6 +64,9 @@ const showItems=items=>{
       product={product}
       showAddToCartButton={false}
       cartUpdate={true}
+      showRemoveProductButton={true}
+      setRun={setRun}
+                        run={run}
       />))}
     </div>
   )
@@ -69,7 +74,7 @@ const showItems=items=>{
 
 const noItemsMessage=()=>(
   <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
- Your cart is empty.<br/><Link to ="/shop">Continue shopping</Link>
+ Your cart is empty.<br/><Link to ="/shop"style={{ color: '#cb4783',textDecoration:'none' }}>Continue shopping</Link>
   </Typography>
 
 )
