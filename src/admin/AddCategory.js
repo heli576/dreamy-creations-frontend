@@ -147,8 +147,8 @@ const goBack=()=>{
 value={name}
     onChange={handleChange}
     fullWidth
-    required
-    id="standard-required"/>
+
+  />
     {showError()}
     <Button
     type="submit"

@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from "react";
-import {Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import ProductCard from "./ProductCard";
 import Typography from '@material-ui/core/Typography';
@@ -7,13 +6,12 @@ import Banner from "../images/shop.png";
 import {getCategories,getFilteredProducts} from "./apiCore";
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-import FormLabel from '@material-ui/core/FormLabel';
+
 import Paper from '@material-ui/core/Paper';
 import FilterCheckbox from "./FilterCheckbox";
 import {prices} from "./fixedPrices";
 import RadioBox from "./RadioBox";
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "@material-ui/core/Button";
 import Appbar from "./Appbar";
 import Container from 'react-bootstrap/Container';

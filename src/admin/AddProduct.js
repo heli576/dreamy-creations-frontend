@@ -12,11 +12,9 @@ import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
 import {createProduct,getCategories} from "./apiAdmin";
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 

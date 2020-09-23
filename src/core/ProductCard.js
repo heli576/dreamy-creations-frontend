@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { API } from "../config";
-import {Link,Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {addItem,updateItem,removeItem} from "./cartHelpers";
 import TextField from '@material-ui/core/TextField';
 
@@ -48,8 +48,8 @@ const useStyles = makeStyles((theme)=>({
 const ProductCard=({product,showAddToCartButton=true,cartUpdate=false,showRemoveProductButton=false, setRun = f => f,
   run = undefined})=>{
   const classes = useStyles();
-  const [redirect,setRedirect]=useState(false);
   const [count,setCount]=useState(1);
+   const [redirect, setRedirect] = useState(false);
   const addToCart=()=>{
     addItem(product,()=>{
       setRedirect(true);

@@ -4,10 +4,10 @@ import Typography from "@material-ui/core/Typography";
 import Banner from "../images/cart.png";
 import Appbar from "../core/Appbar";
 import {Link} from "react-router-dom";
-import {isAuthenticated} from "../auth";
-import {getProducts} from "./apiCore";
+
 import {getCart} from "./cartHelpers";
 import ProductCard from "./ProductCard";
+import Checkout from "./Checkout";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -96,6 +96,13 @@ return (
  </Row>
  </Col>
  <Col xs={12} md={6}>
+ <div>
+ <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+ Your Cart Summary
+ </Typography>
+
+ <Checkout products={items}/>
+ </div>
  </Col>
 </Row>
 </Container>

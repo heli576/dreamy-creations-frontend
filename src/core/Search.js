@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {  makeStyles } from '@material-ui/core/styles';
@@ -112,7 +112,7 @@ const searchData=()=>{
 
 
 const searchMessage = (searched, results) => {
-       if (searched && results.length ==1) {
+       if (searched && results.length===1) {
            return `Found ${results.length} product`;
        }
        if(searched && results.length >1) {

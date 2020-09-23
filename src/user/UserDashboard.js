@@ -145,7 +145,7 @@ lightBlue: {
 
 const Dashboard=()=>{
 const classes = useStyles();
-const {user:{_id,name,email,role}}=isAuthenticated();
+const {user:{name,email,role}}=isAuthenticated();
 
 
 
