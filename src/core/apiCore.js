@@ -71,3 +71,19 @@ export const listRelated=(productId)=>{
   })
   .catch(err=>console.log(err));
 };
+
+export const processPayment = (userId, token, amount) => {
+    return fetch(`${API}/razorpay/payment/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(amount)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
