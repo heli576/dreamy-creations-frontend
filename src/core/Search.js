@@ -113,13 +113,13 @@ const searchData=()=>{
 
 const searchMessage = (searched, results) => {
        if (searched && results.length===1) {
-           return `Found ${results.length} product`;
+           return `Found ${results.length} gift`;
        }
        if(searched && results.length >1) {
-           return `Found ${results.length} products`;
+           return `Found ${results.length} gifts`;
        }
        if (searched && results.length < 1) {
-           return `No products found`;
+           return `No gifts found`;
        }
    };
 

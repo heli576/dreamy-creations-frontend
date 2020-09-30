@@ -241,8 +241,8 @@ const handlePrice=value=>{
     +91 9099256713
     </Typography>
     <Typography gutterBottom variant="body1" className={classes.phone}>
-    <a href="mailto:bulsaramoksha@gmail.com" className={classes.phone}>
-    bulsaramoksha@gmail.com
+    <a href="mailto:dreamycreations351@gmail.com" className={classes.phone}>
+    dreamycreations351@gmail.com
     </a>
     </Typography>
   </Col>
