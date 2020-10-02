@@ -9,9 +9,11 @@ import TextField from '@material-ui/core/TextField';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { getProducts} from './apiCore';
+import { getProducts,createOrder} from './apiCore';
 import {API} from "../config";
 import {emptyCart} from "./cartHelpers";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,7 +63,7 @@ const Checkout=({products,setRun=f=>f,run=undefined})=>{
 id="address"
 name="address"
 type="text"
-label="Address"
+label="Delivery Address"
 className={classes.textField}
 value={data.address}
 onChange={handleAddress}
@@ -95,10 +97,11 @@ variant="outlined"
 
   const __DEV__ = document.domain === 'localhost'
 
-
+let deliveryAddress=data.address;
 
 
   	async function displayRazorpay() {
+      setData({loading:true});
   		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
   		if (!res) {
@@ -131,17 +134,30 @@ const paymentData={
   			description: 'Thank you for purchase',
   			image: {Logo},
   			handler: function (response) {
-  				//console.log(response.razorpay_payment_id);
+
   			//	console.log(response.razorpay_order_id);
   			//	console.log(response.razorpay_signature);
-              emptyCart(()=>{
-                setRun(!run); // run useEffect in parent Cart
-                                      console.log('payment success and empty cart');
-                                      setData({
-                                          loading: false,
-                                          success: true
-                                      });
-              })
+        const createOrderData={
+          products:products,
+          transaction_id:response.razorpay_payment_id,
+          amount:getTotal(products),
+          address:deliveryAddress
+        }
+        createOrder(userId,token,createOrderData)
+        .then(response=>{
+          emptyCart(()=>{
+            setRun(!run); // run useEffect in parent Cart
+                                  console.log('payment success and empty cart');
+                                  setData({
+                                      loading: false,
+                                      success: true
+                                  });
+          })
+        }).catch(error=>{
+          console.log(error);
+          setData({loading:false});
+        })
+
   			},
 
   		}
@@ -149,6 +165,10 @@ const paymentData={
   		paymentObject.open()
   	}
 
+
+const showLoading=(loading)=>(
+    loading&&(<CircularProgress size={40} className={classes.progress}/>)
+)
 
 
 
@@ -177,7 +197,7 @@ const paymentData={
     <Typography gutterBottom variant="h5" component="h2">
             Total:₹{getTotal()}
           </Typography>
-
+{showLoading(data.loading)}
 {showCheckout()}
 </CardContent>
 
