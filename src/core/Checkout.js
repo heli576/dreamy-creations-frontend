@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { getProducts} from './apiCore';
 import {API} from "../config";
+import {emptyCart} from "./cartHelpers";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,6 +69,7 @@ fullWidth
 multiline
 rows={4}
 variant="outlined"
+
 />
 <Button  variant="contained" color="primary" onClick={displayRazorpay}  className={classes.buttons}>
   Pay
@@ -129,9 +131,17 @@ const paymentData={
   			description: 'Thank you for purchase',
   			image: {Logo},
   			handler: function (response) {
-  				alert(response.razorpay_payment_id)
-  				alert(response.razorpay_order_id)
-  				alert(response.razorpay_signature)
+  				//console.log(response.razorpay_payment_id);
+  			//	console.log(response.razorpay_order_id);
+  			//	console.log(response.razorpay_signature);
+              emptyCart(()=>{
+                setRun(!run); // run useEffect in parent Cart
+                                      console.log('payment success and empty cart');
+                                      setData({
+                                          loading: false,
+                                          success: true
+                                      });
+              })
   			},
 
   		}
@@ -159,6 +169,7 @@ const paymentData={
     )
     )
   }
+
   return(
     <Card>
 

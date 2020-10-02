@@ -101,7 +101,7 @@ return (
  Your Cart Summary
  </Typography>
 
- <Checkout products={items}/>
+ <Checkout setRun={setRun} products={items}/>
  </div>
  </Col>
 </Row>
