@@ -3,7 +3,7 @@ import {isAuthenticated} from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Appbar from "../core/Appbar";
 import {Link} from "react-router-dom";
-import {listOrders} from "./apiAdmin";
+import {listOrders,getStatusValues,updateOrderStatus} from "./apiAdmin";
 import Typography from "@material-ui/core/Typography";
 import Banner from "../images/dashboard.png";
 import Container from 'react-bootstrap/Container';
@@ -13,6 +13,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import moment from "moment";
 const useStyles = makeStyles((theme) => ({
   ...theme.spreadThis,
@@ -57,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
   fontSize:"1rem"
   }
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 70,
+  },
   container:{
     width:"100%",
     textAlign:"center",
@@ -91,6 +97,7 @@ padding:3
 const Orders=()=>{
     const classes = useStyles();
     const [orders,setOrders]=useState([]);
+    const [statusValues,setStatusValues]=useState([]);
     const {user,token}=isAuthenticated()
     const loadOrders=()=>{
       listOrders(user._id,token).then(data=>{
@@ -101,8 +108,20 @@ const Orders=()=>{
         }
       })
     }
+
+    const loadStatusValues=()=>{
+      getStatusValues(user._id,token).then(data=>{
+        if(data.error){
+          console.log(data.error);
+        }else{
+          setStatusValues(data);
+        }
+      })
+    }
+
     useEffect(()=>{
       loadOrders();
+      loadStatusValues();
     },[]);
 
     const showOrdersLength=()=>{
@@ -121,6 +140,45 @@ const Orders=()=>{
         )
       }
     }
+
+    const handleStatusChange=(e,orderId)=>{
+    updateOrderStatus(user._id,token,orderId,e.target.value).then(data=>{
+      if(data.error){
+        console.log("Status update fail");
+      }else{
+        loadOrders();
+      }
+    })
+
+    };
+
+const showStatus=o=>(
+  <div>
+  <Chip
+  size="medium"
+  label={o.status}
+  clickable
+  color="primary"
+
+/>
+<br/>
+  <FormControl variant="outlined" className={classes.formControl}  >
+       <Select
+native
+onChange={e => handleStatusChange(e, o._id)}
+
+       >
+         <option>Update status</option>
+         {statusValues.map((status, index) => (
+                    <option key={index} value={status}>
+                        {status}
+                    </option>
+                ))}
+       </Select>
+     </FormControl>
+     </div>
+)
+
     return(
       <div>
       <Appbar/>
@@ -142,13 +200,10 @@ const Orders=()=>{
        <Typography variant="h5" component="h2">
          Order id {o._id}
        </Typography>
-       <Chip
-       size="small"
-       label={o.status}
-       clickable
-       color="primary"
 
-     />
+       {showStatus(o)}
+
+
        <Typography variant="body1" component="p">
         Transaction ID:{o.transaction_id}
        </Typography>
