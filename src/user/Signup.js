@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Link} from "react-router-dom";
+import {Link,Redirect} from "react-router-dom";
 import {signup} from "../auth";
 import Appbar from "../core/Appbar";
 import Logo from "../images/logo.png";
@@ -58,7 +58,7 @@ const Signup=()=>{
    password:"",
    error:"",
    success:false,
-   
+
  });
 
  const {name,email,password,error,success}=values;
@@ -157,9 +157,7 @@ const showError=()=>{
 const showSuccess=()=>{
   if(success){
     return(
-      <Typography variant="body2" className={classes.customSuccess}>
-  New account created.Please login <Link to="/signin">here</Link>
-      </Typography>
+    <Redirect to="/signin"/>
     )
   }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {isAuthenticated} from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
@@ -19,6 +19,8 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import EmailIcon from '@material-ui/icons/Email';
 import GroupIcon from '@material-ui/icons/Group';
 import Divider from '@material-ui/core/Divider';
+import {getPurchaseHistory} from "./apiUser";
+import moment from "moment";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -145,9 +147,53 @@ lightBlue: {
 
 const Dashboard=()=>{
 const classes = useStyles();
+const [history,setHistory]=useState([]);
 const {user:{_id,name,email,role}}=isAuthenticated();
+  const token = isAuthenticated().token;
+const init=(userId,token)=>{
+  getPurchaseHistory(userId,token).then(data=>{
+    if(data.error){
+      console.log(data.error);
+    }else{
+      setHistory(data);
+    }
+  })
+}
+useEffect(()=>{
+  init(_id,token);
+},[]);
+
+const purchaseHistory=history=>{
+  return(
 
 
+        <div className="card mb-5" style={{textAlign:"left"}}>
+            <ul className="list-group">
+                <li className="list-group-item">
+                    {history.map((h, i) => {
+                        return (
+                            <div>
+                                <hr />
+                                {h.products.map((p, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <h6>Product name: {p.name}</h6>
+                                            <h6>Product price: ₹{p.price}</h6>
+                                            <h6>
+                                                Purchased date:{" "}
+                                                {moment(h.createdAt).fromNow()}
+                                            </h6>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        );
+                    })}
+                </li>
+            </ul>
+        </div>
+  )
+}
 
 return (
   <div>
@@ -213,10 +259,7 @@ return (
   <Typography className={classes.title} color="secondary" gutterBottom>
 Purchase History
   </Typography>
-  <Typography variant="body1"  color="textSecondary" gutterBottom>
-No order placed yet.
-  </Typography>
-
+{purchaseHistory(history)}
 
 </CardContent>
 </Card>
