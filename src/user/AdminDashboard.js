@@ -136,7 +136,7 @@ lightBlue: {
 
 const AdminDashboard=()=>{
 const classes = useStyles();
-const {user:{name,email,role}}=isAuthenticated();
+const {user:{_id,name,email,role}}=isAuthenticated();
 
 
 

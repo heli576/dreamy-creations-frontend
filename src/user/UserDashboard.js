@@ -145,7 +145,7 @@ lightBlue: {
 
 const Dashboard=()=>{
 const classes = useStyles();
-const {user:{name,email,role}}=isAuthenticated();
+const {user:{_id,name,email,role}}=isAuthenticated();
 
 
 
@@ -169,7 +169,7 @@ return (
      <Button variant="contained" color="primary" component={Link} to="/cart" className={classes.buttons}>My Cart</Button>
   </CardActions>
      <CardActions className={classes.action}>
-<Button variant="contained" color="secondary" component={Link} to="/profile/update" className={classes.buttons}>Edit profile</Button>
+<Button variant="contained" color="secondary" component={Link} to={`/profile/${_id}`} className={classes.buttons}>Edit profile</Button>
       </CardActions>
    </Card>
 </Grid>
