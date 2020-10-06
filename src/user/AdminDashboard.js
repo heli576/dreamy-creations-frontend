@@ -165,6 +165,9 @@ return (
       <CardActions className={classes.action}>
       <Button variant="contained" color="primary" component={Link} to="/admin/orders" className={classes.buttons}>View Orders</Button>
    </CardActions>
+   <CardActions className={classes.action}>
+<Button variant="contained" color="secondary" component={Link} to="/admin/products" className={classes.buttons}>Manage</Button>
+    </CardActions>
    </Card>
 </Grid>
 <Grid item xs={12} md={8}>

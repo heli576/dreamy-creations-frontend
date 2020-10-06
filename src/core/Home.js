@@ -37,7 +37,7 @@ container:{
   }
 },
 title:{
-  marginTop:50,
+  marginTop:10,
 fontFamily:"Playball",
   textAlign:"center",
   fontSize:35,

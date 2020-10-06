@@ -100,7 +100,9 @@ const init=()=>{
   });
 };
 
-useEffect(init, []);
+useEffect(() => {
+       init();
+   }, []);
 
 
 const handleChange=(name)=>(event)=>{
