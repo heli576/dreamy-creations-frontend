@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Link,Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {signup} from "../auth";
 import Appbar from "../core/Appbar";
 import Logo from "../images/logo.png";

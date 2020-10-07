@@ -5,12 +5,12 @@ import Typography from "@material-ui/core/Typography";
 import Logo from "../images/logo.png";
 import Main from "../images/main.png";
 import Appbar from "../core/Appbar";
-import {Link,Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {read,update,updateUser} from "./apiUser";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import TextField from '@material-ui/core/TextField';
-import Button from "@material-ui/core/Button";
+
+
 
 import Footer from "../core/Footer";
 
