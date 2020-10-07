@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Footer from "./Footer";
 const useStyles = makeStyles((theme)=>({
   ...theme.spreadThis,
   title:{
@@ -88,6 +89,7 @@ useEffect(()=>{
     </Grid>
 
     </div>
+    <Footer/>
     </div>
   )
 }

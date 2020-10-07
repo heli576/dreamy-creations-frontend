@@ -19,6 +19,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import EmailIcon from '@material-ui/icons/Email';
 import GroupIcon from '@material-ui/icons/Group';
 import Divider from '@material-ui/core/Divider';
+import Footer from "../core/Footer";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -203,7 +204,7 @@ return (
 </Grid>
 
 
-
+<Footer/>
   </div>
 );
 }

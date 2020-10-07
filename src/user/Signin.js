@@ -5,7 +5,7 @@ import Appbar from "../core/Appbar";
 import Main from "../images/main.png";
 import Logo from "../images/logo.png";
 import {Link} from "react-router-dom";
-
+import Footer from "../core/Footer";
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -181,6 +181,7 @@ loading&&(<CircularProgress size={20} className={classes.progress}/>);
 {signInForm()}
 {redirectUser()}
 </div>
+<Footer/>
 </div>
   )
 }

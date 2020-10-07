@@ -12,6 +12,8 @@ import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 
+import Footer from "../core/Footer";
+
 
 const useStyles = makeStyles((theme) => ({
   ...theme.spreadThis,
@@ -135,7 +137,7 @@ return(
        {profileUpdate(name, email, password)}
        {redirectUser(success)}
       </div>
-
+<Footer/>
 </div>
 );
 }

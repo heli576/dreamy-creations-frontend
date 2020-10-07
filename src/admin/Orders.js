@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import {isAuthenticated} from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Appbar from "../core/Appbar";
+import Footer from "../core/Footer";
 import {Link} from "react-router-dom";
 import {listOrders,getStatusValues,updateOrderStatus} from "./apiAdmin";
 import Typography from "@material-ui/core/Typography";
@@ -246,6 +247,7 @@ onChange={e => handleStatusChange(e, o._id)}
 
 
     </div>
+    <Footer/>
   </div>
     )
 }

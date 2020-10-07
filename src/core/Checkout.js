@@ -189,7 +189,11 @@ const showLoading=(loading)=>(
     )
     )
   }
-
+  const showSuccess = success => (
+         <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
+             Thanks! Your payment was successful!
+         </div>
+     );
   return(
     <Card>
 
@@ -199,6 +203,7 @@ const showLoading=(loading)=>(
           </Typography>
 {showLoading(data.loading)}
 {showCheckout()}
+    {showSuccess(data.success)}
 </CardContent>
 
     </Card>

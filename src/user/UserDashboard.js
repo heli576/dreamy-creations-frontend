@@ -21,6 +21,7 @@ import GroupIcon from '@material-ui/icons/Group';
 import Divider from '@material-ui/core/Divider';
 import {getPurchaseHistory} from "./apiUser";
 import moment from "moment";
+import Footer from "../core/Footer";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -265,7 +266,7 @@ Purchase History
 </Card>
 </Grid>
 </Grid>
-
+<Footer/>
   </div>
 );
 }

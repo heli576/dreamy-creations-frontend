@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import {isAuthenticated} from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Appbar from "../core/Appbar";
+import Footer from "../core/Footer";
 import {Link} from "react-router-dom";
 import Main from "../images/main.png";
 import Logo from "../images/logo.png";
@@ -169,7 +170,7 @@ value={name}
     <Grid item sm/>
     </Grid>
     </div>
-
+<Footer/>
     </div>
   )
 

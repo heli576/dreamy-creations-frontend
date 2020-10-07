@@ -4,8 +4,7 @@ import {signup} from "../auth";
 import Appbar from "../core/Appbar";
 import Logo from "../images/logo.png";
 import Main from "../images/main.png";
-
-
+import Footer from "../core/Footer";
 import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from "@material-ui/core/Grid";
@@ -169,6 +168,7 @@ const showSuccess=()=>{
         <div className={classes.root}>
 {signUpForm()}
 </div>
+<Footer/>
 </div>
   )
 }

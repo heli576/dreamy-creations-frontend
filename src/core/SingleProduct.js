@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { API } from "../config";
 import {Link} from "react-router-dom";
 import {addItem} from "./cartHelpers";
-
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 

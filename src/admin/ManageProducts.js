@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import {isAuthenticated} from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Appbar from "../core/Appbar";
+import Footer from "../core/Footer";
 import {Link} from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
 import List from '@material-ui/core/List';
@@ -140,6 +141,7 @@ useEffect(()=>{
 
    </List>
    </Paper>
+   <Footer/>
 </div>
 
 

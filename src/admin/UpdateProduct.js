@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import {isAuthenticated} from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Appbar from "../core/Appbar";
+import Footer from "../core/Footer";
 import {Link} from "react-router-dom";
 import Main from "../images/main.png";
 import Logo from "../images/logo.png";
@@ -210,7 +211,7 @@ const showLoading=()=>
 id="name"
 name="name"
 type="text"
-label="Name"
+
 className={classes.textField}
 value={name}
 onChange={handleChange("name")}
@@ -220,7 +221,7 @@ fullWidth
 id="description"
 name="description"
 type="text"
-label="Description"
+
 className={classes.textField}
 value={description}
 onChange={handleChange("description")}
@@ -232,7 +233,7 @@ rowsMax={4}
 id="price"
 name="price"
 type="number"
-label="Price"
+
 className={classes.textField}
 value={price}
 onChange={handleChange("price")}
@@ -276,7 +277,7 @@ className={classes.buttons}
     <Grid item sm/>
     </Grid>
     </div>
-
+<Footer/>
     </div>
   )
 

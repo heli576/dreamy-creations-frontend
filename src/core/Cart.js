@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Banner from "../images/cart.png";
 import Appbar from "../core/Appbar";
 import {Link} from "react-router-dom";
-
+import Footer from "./Footer";
 import {getCart} from "./cartHelpers";
 import ProductCard from "./ProductCard";
 import Checkout from "./Checkout";
@@ -107,7 +107,7 @@ return (
 </Row>
 </Container>
 
-
+<Footer/>
   </div>
 );
 }
